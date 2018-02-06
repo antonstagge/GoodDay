@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import MySQLdb
 import time
 
@@ -120,7 +121,7 @@ else:
         cursor.execute(update_user_sql)
         db.commit()
     except:
-        print "Something went wrong tyring to add new data"
+        print "Something went wrong trying to add new data"
         db.rollback()
         db.close()
         exit(1)
