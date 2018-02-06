@@ -11,3 +11,6 @@ Then quit mysql and type:
 add the gather to ur bin using
 
 `cp gather /usr/local/bin`
+
+### REMEMBER TO REMOVE FAKE DATA!
+`DELETE FROM data WHERE which_day == '2018-02-06';`
