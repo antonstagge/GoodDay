@@ -7,3 +7,7 @@ Then type:
 
 Then quit mysql and type:
 `mysql -u testuser -p GoodDay < build_database.sql`
+
+add the gather to ur bin using
+
+`cp gather /usr/local/bin`
