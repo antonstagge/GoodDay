@@ -2,10 +2,11 @@ DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS data;
 
 #data table
-#data_id nad which_day has to be first 2 and good_day has to be last. 
+#data_id nad which_day has to be first 2 and good_day has to be last.
 CREATE TABLE data(
     data_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     which_day DATE NOT NULL,
+    belongs_to INT UNSIGNED,
     sleep TINYINT UNSIGNED NOT NULL,
     weather TINYINT UNSIGNED NOT NULL,
     breakfast TINYINT UNSIGNED NOT NULL,
@@ -26,8 +27,8 @@ CREATE TABLE user(
 
 
 
-INSERT INTO data(which_day, sleep, weather, breakfast, mindset) VALUES
-("2018-02-06",5,3,5,4);
+INSERT INTO data(which_day, belongs_to, sleep, weather, breakfast, mindset) VALUES
+("2018-02-06",1,5,3,5,4);
 
 INSERT INTO user(first_name, last_name, lower_char, upper_char, current_data) VALUES
 ("Anton", "Stagge", 'a', 'A', 1),

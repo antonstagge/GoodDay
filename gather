@@ -87,7 +87,7 @@ else:
     field_names = []
     for i in field_names_unformated:
         field_names.append(i[0])
-    field_names = field_names[2:len(field_names)-1]
+    field_names = field_names[3:len(field_names)-1]
 
     #Get user data
     data = []
@@ -97,7 +97,7 @@ else:
         rating_input = raw_input("> ")
         try:
             rating = int(rating_input)
-            if rating < 1 or rating > 5:
+            if rating < 1 or rating > 6:
                 raise ValueError("Wrong input")
             data.append(rating)
         except:
@@ -106,10 +106,10 @@ else:
             exit(1)
 
     #build sql put string
-    insert_sql = "INSERT INTO data(which_day, "
+    insert_sql = "INSERT INTO data(which_day, belongs_to, "
     for i in field_names:
         insert_sql += i + ", "
-    insert_sql = insert_sql[:len(insert_sql)-2] + ") VALUES (\'" + which_day + "\', "
+    insert_sql = insert_sql[:len(insert_sql)-2] + ") VALUES (\'" + which_day + "\', " + str(user_id) + ", "
     for i in data:
         insert_sql += str(i) + ", "
     insert_sql = insert_sql[:len(insert_sql)-2] + ")"

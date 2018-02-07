@@ -7,7 +7,8 @@ class Sample:
     def __init__(self, db_entry):
         self.good_day = db_entry[len(db_entry)-1]
         self.data_id = db_entry[0]
-        self.data = db_entry[2:len(db_entry)-1]
+        self.belongs_to = db_entry[2]
+        self.data = db_entry[3:len(db_entry)-1]
 
 def get_field_names(cursor):
     field_names_sql = "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_NAME=\'data\'"
@@ -16,7 +17,7 @@ def get_field_names(cursor):
     field_names = []
     for i in field_names_unformated:
         field_names.append(i[0])
-    field_names = field_names[2:len(field_names)-1]
+    field_names = field_names[3:len(field_names)-1]
     return field_names
 
 def get_data_set(cursor):
