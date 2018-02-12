@@ -6,14 +6,15 @@ def calc_priors():
     for sample in data.data_set:
         if (sample.good_day):
             good_days += 1
-        total += 1
+        if (sample.good_day != None):
+            total += 1
     prior_yes = float(good_days)/total
     prior_no = float(total-good_days)/total
     return (prior_yes, prior_no)
 
 def calc_likelihoods():
     yes_cases = [x for x in data.data_set if x.good_day]
-    no_cases = [x for x in data.data_set if (not x.good_day)]
+    no_cases = [x for x in data.data_set if (x.good_day == 0)]
     yes_count = len(yes_cases)
     no_count = len(no_cases)
     # add pseudocounts to avoid 0
@@ -73,19 +74,20 @@ for field in data.field_names:
         print "Not a valid input!"
         exit(1)
 
+print "\n"
+
 y_map_yes = P_yes
 y_map_no = P_no
 
 data_index = 0
 for field in data.field_names:
-    y_map_yes *= P_x_given_yes[field][data_index]
-    y_map_no *= P_x_given_no[field][data_index]
+    y_map_yes *= P_x_given_yes[field][user_data[data_index]-1]
+    y_map_no *= P_x_given_no[field][user_data[data_index]-1]
     data_index += 1
 
-print y_map_yes
-print y_map_no
+print "The AI gods have predicted.....(using MAP estimate on ML learning)"
 
 if (y_map_yes > y_map_no):
-    print "YOU ARE GOING TO HAVE A GOOD DAY!"
+    print "You are going to have a GOOD day!"
 else:
-    print "YOU ARE GOING TO HAVE A BAD DAY!"
+    print "You are going to have a BAD day!"
